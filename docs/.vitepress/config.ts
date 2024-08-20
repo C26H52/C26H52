@@ -4,6 +4,7 @@ import { metaData } from './config/constants';
 import { head } from './config/head';
 import { markdown } from './config/markdown';
 import { themeConfig } from './config/theme';
+import { BiDirectionalLinks } from '@nolebase/markdown-it-bi-directional-links';
 
 export default withMermaid(
   defineConfig({
@@ -15,7 +16,11 @@ export default withMermaid(
     lastUpdated: true, // 显示最后更新时间
 
     head, // <head>内标签配置
-    markdown: markdown, // Markdown配置
+    markdown: {
+      config: (md) => {
+        md.use(BiDirectionalLinks()) 
+      }, // Markdown配置
+    },
     vue: {
       template: {
         compilerOptions: {
